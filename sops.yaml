@@ -1,0 +1,4 @@
+creation_rules:
+  - path_regex: ".*sops.*"
+    encrypted_regex: "^(data|stringData|stringdata|encpassword)$"
+    age: age17uext3pdpx2930z637ak5c4rccvltmwevy74rqk60dlelff6yu0qsyjy05

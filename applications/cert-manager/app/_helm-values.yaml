@@ -1,0 +1,19 @@
+crds:
+  enabled: true
+
+replicaCount: 2
+
+podDisruptionBudget:
+  enabled: true
+  maxUnavailable: 1
+
+dns01RecursiveNameservers: 8.8.8.8,8.8.4.4
+dns01RecursiveNameserversOnly: true
+
+resources:
+  limits:
+    cpu: 512m
+    memory: 512Mi
+  requests:
+    cpu: 256m
+    memory: 256Mi
