@@ -1,6 +1,5 @@
 crds:
   enabled: true
-  keep: true
 
 replicaCount: 2
 
