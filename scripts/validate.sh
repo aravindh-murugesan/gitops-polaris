@@ -20,10 +20,10 @@ done
 # 2. Validate raw Kubernetes manifests using Kubeconform
 # Exclude files starting with '_' and exclude the '.github' folder
 echo "➡️  Validating raw YAML files with Kubeconform..."
-echo "➡️  Ignoring files starting with '_' and '.sops.yaml' and '.github' folder..."
+echo "➡️  Ignoring files starting with '_' and 'sops.yaml' and '.github' folder..."
 find . -type f -name '*.yaml' \
   -not -name '_*' \
-  -not -name '.sops.yaml' \
+  -not -name 'sops.yaml' \
   -not -path '*/\.github/*' \
   -print0 | xargs -0 kubeconform -strict -summary \
     -schema-location default \
