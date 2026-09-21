@@ -1,0 +1,18 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: polaris-site-installers-phase2
+  namespace: flux-system
+  labels:
+    app: site-installer
+    phase: 2
+spec:
+  interval: 10m0s
+  wait: true
+  dependsOn: []
+  sourceRef:
+    kind: GitRepository
+    name: polaris-v1-git
+  path: ./cluster-installers/phase-02
+  prune: true
