@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system
   labels:
     app: site-installer
-    phase: 2
+    phase: "2"
 spec:
   interval: 10m0s
   wait: true
