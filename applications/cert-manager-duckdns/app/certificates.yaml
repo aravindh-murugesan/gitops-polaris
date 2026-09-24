@@ -1,0 +1,31 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: polarisv1-duckdns-org
+  namespace: cert-manager-duckdns
+spec:
+  secretName: polarisv1-duckdns-org-tls
+  issuerRef:
+    name: cert-manager-duckdns-production
+    kind: ClusterIssuer
+  commonName: "polarisv1.duckdns.org"
+  dnsNames:
+    - "polarisv1.duckdns.org"
+    - "*.polarisv1.duckdns.org"
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: polarisw1-duckdns-org
+  namespace: cert-manager-duckdns
+spec:
+  secretName: polarisw1-duckdns-org-tls
+  issuerRef:
+    name: cert-manager-duckdns-production
+    kind: ClusterIssuer
+  commonName: "polarisw1.duckdns.org"
+  dnsNames:
+    - "polarisw1.duckdns.org"
+    - "*.polarisw1.duckdns.org"

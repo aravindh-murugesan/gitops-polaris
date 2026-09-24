@@ -6,6 +6,7 @@ resources:
   - ./helm-source.yaml
   - ./helm-installer.yaml
   - ./duckdns-token-sops.yaml
+  - ./certificates.yaml
 
 configMapGenerator:
   - name: cert-manager-duckdns-helm-values
