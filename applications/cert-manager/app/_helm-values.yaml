@@ -7,7 +7,7 @@ podDisruptionBudget:
   enabled: true
   maxUnavailable: 1
 
-dns01RecursiveNameservers: 8.8.8.8,8.8.4.4
+dns01RecursiveNameservers: 8.8.8.8:53,8.8.4.4:53
 dns01RecursiveNameserversOnly: true
 
 resources:
