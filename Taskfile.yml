@@ -1,0 +1,59 @@
+version: "3"
+
+tasks:
+  default:
+    cmds:
+      - "task -l"
+  git-branch-housekeeping:
+    desc: Prunes local branches that are deleted remotely.
+    cmds:
+      - "git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d"
+  encrypt:
+    desc: Encrypt file with SOPS
+    env:
+      SOPS_AGE_KEY_FILE: .age-keys.txt
+    cmds:
+      - |
+        FILE="{{.CLI_ARGS}}"
+        if [ -z "$FILE" ]; then
+          FILE=$(fzf)
+        fi
+        if [ -n "$FILE" ]; then
+          sops --encrypt --in-place --config sops.yaml "$FILE"
+        else
+          echo "No file selected."
+          exit 1
+        fi
+  decrypt:
+    desc: Decrypt data with SOPS
+    env:
+      SOPS_AGE_KEY_FILE: .age-keys.txt
+    cmds:
+      - |
+        FILE="{{.CLI_ARGS}}"
+        if [ -z "$FILE" ]; then
+          FILE=$(fzf)
+        fi
+        if [ -n "$FILE" ]; then
+          sops --decrypt --config sops.yaml "$FILE"
+        else
+          echo "No file selected."
+          exit 1
+        fi
+
+  decrypt-in-place:
+    desc: Decrypt data with SOPS
+    env:
+      SOPS_AGE_KEY_FILE: .age-keys.txt
+    cmds:
+      - |
+        FILE="{{.CLI_ARGS}}"
+        if [ -z "$FILE" ]; then
+          FILE=$(fzf)
+        fi
+        if [ -n "$FILE" ]; then
+          sops --decrypt -i --config sops.yaml "$FILE"
+        else
+          echo "No file selected."
+          exit 1
+        fi
