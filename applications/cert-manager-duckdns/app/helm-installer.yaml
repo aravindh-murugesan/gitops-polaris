@@ -1,0 +1,31 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cert-manager-duckdns
+  namespace: flux-system
+  labels:
+    app: cert-manager-duckdns
+    installer-type: helm
+spec:
+  interval: 10m
+  targetNamespace: cert-manager-duckdns
+  releaseName: cert-manager-duckdns
+  timeout: 30m
+  install:
+    createNamespace: true
+  chart:
+    spec:
+      chart: cert-manager-duckdns
+      sourceRef:
+        kind: HelmRepository
+        name: cert-manager-duckdns-source
+        namespace: flux-system
+      interval: 10m
+  valuesFrom:
+    - kind: ConfigMap
+      name: cert-manager-duckdns-helm-values
+    - kind: Secret
+      name: cert-manager-duckdns-token
+      valuesKey: token
+      targetPath: token.duckdns

@@ -1,0 +1,18 @@
+secret:
+  existingSecret: true
+  existingSecretName: "cert-manager-duckdns-token"
+
+clusterIssuer:
+  email: aravindhstanley@gmail.com
+  staging:
+    create: true
+  production:
+    create: true
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 256Mi
+  requests:
+    cpu: 100m
+    memory: 48Mi

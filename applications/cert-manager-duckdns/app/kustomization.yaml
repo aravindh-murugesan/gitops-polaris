@@ -1,0 +1,18 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - ./helm-source.yaml
+  - ./helm-installer.yaml
+  - ./duckdns-token-sops.yaml
+
+configMapGenerator:
+  - name: cert-manager-duckdns-helm-values
+    namespace: flux-system
+    options:
+      disableNameSuffixHash: true
+      labels:
+        reconcile.fluxcd.io/watch: Enabled
+    files:
+      - values.yaml=_helm-values.yaml
