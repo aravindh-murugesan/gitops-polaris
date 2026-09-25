@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: cert-manager-duckdns-token
-  namespace: cert-manager
+  namespace: flux-system
 type: Opaque
 stringData:
   token: ENC[AES256_GCM,data:4JyJ9ZKkbkOiNpSog9Wf9iBDHf/L3T9mr4+G0ZYKJ2eI2zMr,iv:n23FWVc/9D3PdqyGAgWuZ+CZuRIey/ZkreVt2qYDf8Y=,tag:zW7Q0qiqht9iG7EyYcXsjg==,type:str]

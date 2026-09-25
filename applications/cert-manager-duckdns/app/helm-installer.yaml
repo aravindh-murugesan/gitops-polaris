@@ -16,7 +16,7 @@ spec:
     createNamespace: true
   chart:
     spec:
-      chart: cert-manager-duckdns
+      chart: cert-manager-webhook-duckdns
       sourceRef:
         kind: HelmRepository
         name: cert-manager-duckdns-source
