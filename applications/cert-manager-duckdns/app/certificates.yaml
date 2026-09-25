@@ -7,7 +7,7 @@ metadata:
 spec:
   secretName: polarisv1-duckdns-org-tls
   issuerRef:
-    name: cert-manager-duckdns-production
+    name: cert-manager-duckdns-cert-manager-webhook-duckdns-production
     kind: ClusterIssuer
   commonName: "polarisv1.duckdns.org"
   dnsNames:
@@ -23,7 +23,7 @@ metadata:
 spec:
   secretName: polarisw1-duckdns-org-tls
   issuerRef:
-    name: cert-manager-duckdns-production
+    name: cert-manager-duckdns-cert-manager-webhook-duckdns-production
     kind: ClusterIssuer
   commonName: "polarisw1.duckdns.org"
   dnsNames:
