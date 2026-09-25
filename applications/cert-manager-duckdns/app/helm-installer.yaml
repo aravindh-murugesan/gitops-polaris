@@ -28,4 +28,4 @@ spec:
     - kind: Secret
       name: cert-manager-duckdns-token
       valuesKey: token
-      targetPath: token.duckdns
+      targetPath: duckdns.token

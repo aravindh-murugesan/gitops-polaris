@@ -4,23 +4,24 @@ metadata:
   labels:
     kustomize.toolkit.fluxcd.io/name: cert-manager-duckdns
     kustomize.toolkit.fluxcd.io/namespace: flux-system
+  managedFields: []
   name: cert-manager-duckdns-token
   namespace: flux-system
 stringData:
-  token: ENC[AES256_GCM,data:A0qczoqbZ3lM+T7BAAs0bGcm2WkygsIFd1leD+gVYXq/zS1o,iv:0nWb43p9jCi/0IIKj2aqWEgH25xNcokqJjrAFCc5gZA=,tag:p0OLWgIwCSArJzdXK5b3HA==,type:str]
+  token: ENC[AES256_GCM,data:/D/dxikpgjxVO9ZjQP21RYUIbq6XsmfbtoLqG6pkZxqcwF6W,iv:NzmOYe7s9EdQQqX8aeY5dEqPycqFr2QI3QfFTt/yj3g=,tag:+BvoHyjL72n7ByrLkfMJ3A==,type:str]
 type: Opaque
 sops:
   age:
     - enc: |
         -----BEGIN AGE ENCRYPTED FILE-----
-        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA5M2NyU3o4cEE4akh5NTZN
-        a0xXaFlhK0RGeGhrLzhiNytvNlR2RXpKMVc4ClY1OUNUdzdvc21Xeit4L1ltYVYy
-        ZHVIcnpyb2cyT3VCeHdrS2VhTEhDeEUKLS0tIHppR1NVQjRyVnpaOHRiZ0ZyUUl4
-        SytnOHF4L2JBT2UvWTUyWHgzU0VHUnMKBAovpvdlf91C2/vNnLGSVbnoCerQ5nnA
-        7Dz2FoRos3CPAKEs/uI4QSWc6ujSMK2FHKb5Nv/vTHTtvImfgo2IUw==
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBUUk1OTTlibzM3eVVYN2hM
+        M3NHTm0wdVVtS3llRytmaXV1WDRaNXpWWDJnCks3b0haOFhHTlpvTWxUZkU5V3JT
+        L1FBbzhPaCt6QUk2UWo4TG1DQmkwRzQKLS0tIElRWjBpekQ3cHVSK3FzVSszK2wx
+        TnM2LzlEdUg1OFpjZEIyZUhDR0FBMUkKvxZvCWwe50vH2nZ/DvF92ZmWiTW863Zp
+        HCf5lJYYlIAnVhTp13gKJrybZsghg/fUBkezP6rt/V4Xy13HI65v3Q==
         -----END AGE ENCRYPTED FILE-----
       recipient: age17uext3pdpx2930z637ak5c4rccvltmwevy74rqk60dlelff6yu0qsyjy05
   encrypted_regex: ^(data|stringData|stringdata|encpassword)$
-  lastmodified: "2026-09-25T07:10:00Z"
-  mac: ENC[AES256_GCM,data:5xxGOhynTLljLAXoffA6IyBpQQKYYpO5XOkSD3okFI8B8eNXjLnp0NmCg2fVDwTTme5bOsecuNRQz4GhMOpLAfbkohiXOOZb63DUN/ixMVK7QcleYb80W9HOwbcjgPAilG4aE+DYIW6Nr8ityNEmKZoSGf0s9C+VVqj+G0XzcoI=,iv:S4CraN/jTk1nWa5wlHcEj00cE8W5uYf5KAyojKLlfcQ=,tag:U0k5MzkbMhI1o7G8kQKqFA==,type:str]
+  lastmodified: "2026-09-25T07:45:25Z"
+  mac: ENC[AES256_GCM,data:IvDN3fAUZDWX73JhwkY/b8ak2qHBUiwgIQMwa3xq2KET8ESJ+kD4G+lNsAgEdl9HiHlT96l0Jhk8/OXy7Fb7gT5r2XSTKEINUnqnDocb8RhY5vHFBhqyRITuMciitM+BdPwzySHsBPk+nZlGzl/8U93owre+cPAK2RY7OewcFDI=,iv:tlhkvNFC3O01As5OO7uOzpXC6xY2Yq2keZQ7Tc8hwII=,tag:x27zOk8k4awskNcMOEiVyg==,type:str]
   version: 3.13.3
