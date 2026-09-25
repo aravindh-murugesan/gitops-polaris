@@ -9,7 +9,7 @@ metadata:
     installer-type: helm
 spec:
   interval: 10m
-  targetNamespace: cert-manager-duckdns
+  targetNamespace: cert-manager
   releaseName: cert-manager-duckdns
   timeout: 30m
   install:

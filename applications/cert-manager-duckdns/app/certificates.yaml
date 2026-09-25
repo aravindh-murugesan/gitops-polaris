@@ -3,7 +3,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: polarisv1-duckdns-org
-  namespace: cert-manager-duckdns
+  namespace: cert-manager
 spec:
   secretName: polarisv1-duckdns-org-tls
   issuerRef:
@@ -19,7 +19,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: polarisw1-duckdns-org
-  namespace: cert-manager-duckdns
+  namespace: cert-manager
 spec:
   secretName: polarisw1-duckdns-org-tls
   issuerRef:
