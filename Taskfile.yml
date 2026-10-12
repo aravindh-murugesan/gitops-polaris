@@ -7,6 +7,9 @@ tasks:
   git-branch-housekeeping:
     desc: Prunes local branches that are deleted remotely.
     cmds:
+      - "git checkout main"
+      - "git pull"
+      - "git fetch -p"
       - "git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -d"
   encrypt:
     desc: Encrypt file with SOPS
