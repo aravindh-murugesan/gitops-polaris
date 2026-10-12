@@ -1,0 +1,8 @@
+crds:
+  enabled: true
+
+podDisruptionBudget:
+  minAvailable: 1
+
+deployment:
+  replicas: 2
