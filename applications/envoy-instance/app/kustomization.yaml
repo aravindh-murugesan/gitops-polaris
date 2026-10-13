@@ -5,3 +5,4 @@ kind: Kustomization
 resources:
   - ./gc-envoy-private.yaml
   - ./gateway-envoy-private.yaml
+  - ./metallb-vip.yaml
