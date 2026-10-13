@@ -1,0 +1,52 @@
+---
+## Envoy's HTTPS Listener uses a TLS Secret from cert-manager namespace.
+## ReferenceGrant allows Envoy Gateway to access this Secret.
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: ReferenceGrant
+metadata:
+  name: envoy-certificate-secret-grant
+  namespace: cert-manager
+spec:
+  from:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      namespace: envoy-gateway-system
+  to:
+    - group: ""
+      kind: Secret
+      name: polarisw1-duckdns-org-tls
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: envoy-private
+  namespace: envoy-gateway-system
+spec:
+  gatewayClassName: envoy-private
+  listeners:
+    - name: http-insecure
+      protocol: HTTP
+      port: 80
+      hostname: "*.polarisw1.duckdns.org"
+      allowedRoutes:
+        namespaces:
+          from: All
+        kinds:
+          - group: gateway.networking.k8s.io
+            kind: HTTPRoute
+    - name: https-w1
+      protocol: HTTPS
+      port: 443
+      hostname: "*.polarisw1.duckdns.org"
+      allowedRoutes:
+        namespaces:
+          from: All
+        kinds:
+          - group: gateway.networking.k8s.io
+            kind: HTTPRoute
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: polarisw1-duckdns-org-tls
+            namespace: cert-manager
