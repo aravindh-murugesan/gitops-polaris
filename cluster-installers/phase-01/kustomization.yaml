@@ -5,3 +5,4 @@ resources:
   - ../../applications/cert-manager/flux-installer
   - ../../operators/cloudnative-postrgres/flux-installer
   - ../../operators/envoy-gateway/flux-installer
+  - ../../operators/metallb/flux-installer
