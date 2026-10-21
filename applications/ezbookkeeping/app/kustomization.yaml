@@ -6,3 +6,4 @@ resources:
   - ./session-enc-key-sops.yaml
   - ./storage.yaml
   - ./ezbookkeeping.yaml
+  - ./http-route.yaml

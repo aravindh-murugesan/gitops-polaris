@@ -1,0 +1,22 @@
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: ezbookkeeping
+  namespace: ezbookkeeping
+  labels:
+    app: ezbookkeeping
+spec:
+  parentRefs:
+    - name: envoy-private
+      namespace: envoy-gateway-system
+  hostnames:
+    - "ezbookkeeping.polarisw1.duckdns.org"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: ezbookkeeping
+          port: 8080
