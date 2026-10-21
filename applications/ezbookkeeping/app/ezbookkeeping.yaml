@@ -1,0 +1,78 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "ezbookkeeping"
+  namespace: ezbookkeeping
+  labels:
+    app: "ezbookkeeping"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "ezbookkeeping"
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: "ezbookkeeping"
+    spec:
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 1000
+        fsGroup: 1000
+      containers:
+        - image: "mayswind/ezbookkeeping:v2.1.0"
+          imagePullPolicy: Always
+          name: "ezbookkeeping"
+          env:
+            - name: EBK_SECURITY_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: "ezbookkeeping-secret"
+                  key: EBK_SECURITY_SECRET_KEY
+            - name: EBK_SERVER_PROTOCOL
+              value: "http"
+            - name: EBK_SERVER_DOMAIN
+              value: "ezbookkeeping.polarisw1.duckdns.org"
+            - name: EBK_SERVER_ENABLE_GZIP
+              value: "true"
+            - name: EBK_LOG_MODE
+              value: "console"
+          ports:
+            - containerPort: 8080
+              name: ezbookkeeping
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "1Gi"
+              cpu: "1"
+          volumeMounts:
+            - mountPath: "/ezbookkeeping/data"
+              name: "ezbookkeeping-data"
+            - mountPath: "/ezbookkeeping/storage"
+              name: "ezbookkeeping-storage"
+      volumes:
+        - name: "ezbookkeeping-data"
+          persistentVolumeClaim:
+            claimName: "ezbookkeeping-data-pvc"
+        - name: "ezbookkeeping-storage"
+          persistentVolumeClaim:
+            claimName: "ezbookkeeping-storage-pvc"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ezbookkeeping
+  namespace: ezbookkeeping
+  labels:
+    app: "ezbookkeeping"
+spec:
+  ports:
+    - port: 8080
+  selector:
+    app: "ezbookkeeping"

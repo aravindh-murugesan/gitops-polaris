@@ -4,3 +4,4 @@ kind: Kustomization
 resources:
   - ../../applications/cert-manager-duckdns/flux-installer
   - ../../applications/envoy-instance/flux-installer
+  - ../../applications/ezbookkeeping/flux-installer
