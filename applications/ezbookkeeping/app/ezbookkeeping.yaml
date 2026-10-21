@@ -23,7 +23,7 @@ spec:
         runAsGroup: 1000
         fsGroup: 1000
       containers:
-        - image: "mayswind/ezbookkeeping:v2.1.0"
+        - image: "mayswind/ezbookkeeping:2.1.0"
           imagePullPolicy: Always
           name: "ezbookkeeping"
           env:
