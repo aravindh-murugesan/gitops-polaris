@@ -1,0 +1,20 @@
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: ezbookkeeping
+  namespace: flux-system
+  labels:
+    app: ezbookkeeping
+    installer-type: fluxtamization
+spec:
+  interval: 10m0s
+  sourceRef:
+    kind: GitRepository
+    name: polaris-v1-git
+  path: ./applications/ezbookkeeping/app
+  prune: true
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age

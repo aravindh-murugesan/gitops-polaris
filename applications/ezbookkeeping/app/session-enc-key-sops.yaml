@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: ezbookkeeping-secret
+  namespace: ezbookkeeping
+type: Opaque
+data:
+  EBK_SECURITY_SECRET_KEY: ENC[AES256_GCM,data:WjEigqlzU9WKUZ8c1lFCuMpVP+dPSUu0cpD5LAJIHqykC3Bvnip+dVbWIZU=,iv:ZM4jNHUOwgDh/ooSKa0mOn1JmrqfKyYskV9YWikmtc0=,tag:z+hYOVAJtRrfML2YF9klYA==,type:str]
+sops:
+  age:
+    - enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBLaDNXaWttNlBUTk1UeWdJ
+        TTFwcG9TeE5ZOUo0VGZrclJQaEFRZkJPaWcwCnJHd1FGSEM1b1F0R2RHMi9nMzJ0
+        VXpxN2R5ZTh3VHhNdjcrNmt0MTZLa3MKLS0tIHlMR1o0alQrUkdjVkt4aUYrUXNt
+        YXBHUEk4TGdDWkplVDlFZStad1c0TkEKpSomS6yoDfbdZzSGBZlMFQMJiqc+HkFA
+        kgir4ZeQMVtI917DBvxK87xerOrDoWJMa6Lky47OgsCSTo09Uve6Cg==
+        -----END AGE ENCRYPTED FILE-----
+      recipient: age17uext3pdpx2930z637ak5c4rccvltmwevy74rqk60dlelff6yu0qsyjy05
+  encrypted_regex: ^(data|stringData|stringdata|encpassword)$
+  lastmodified: "2026-10-21T03:07:26Z"
+  mac: ENC[AES256_GCM,data:yU7st8JsmGwWxtURTGOWxjE/DMKdz1rguTS5vOUFCL+q2Ylhy5M8wI1sVsEftxD5MVygmSJg/UoNBYXBJjsJs8ESHstNU9z/rjT83J623lNOqqvH5uf3Uc4xeWBIRYniNSvdCX4TWM8kz1blckuK+GizXj1DnxCDEssWF4V4sbQ=,iv:+hg4SeELu31DLKK+8kfhLkaYGTAe86G+MV79duGccF8=,tag:u7cujYPDYntIlEreRuE3vQ==,type:str]
+  version: 3.13.3

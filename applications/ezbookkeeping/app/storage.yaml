@@ -1,0 +1,31 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: "ezbookkeeping-data-pvc"
+  namespace: ezbookkeeping
+  labels:
+    app: "ezbookkeeping"
+spec:
+  storageClassName: csi-cinder-sc-retain
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: "ezbookkeeping-storage-pvc"
+  namespace: ezbookkeeping
+  labels:
+    app: "ezbookkeeping"
+spec:
+  storageClassName: csi-cinder-sc-retain
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
