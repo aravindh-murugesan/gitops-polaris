@@ -40,6 +40,10 @@ spec:
               value: "true"
             - name: EBK_LOG_MODE
               value: "console"
+            - name: EBK_SECURITY_ENABLE_API_TOKEN
+              value: "true"
+            - name: EBK_USER_ENABLE_REGISTER
+              value: "false"
           ports:
             - containerPort: 8080
               name: ezbookkeeping
