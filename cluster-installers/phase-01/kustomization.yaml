@@ -6,3 +6,4 @@ resources:
   - ../../operators/cloudnative-postrgres/flux-installer
   - ../../operators/envoy-gateway/flux-installer
   - ../../operators/metallb/flux-installer
+  - ../../operators/victoriametrics/flux-installer
