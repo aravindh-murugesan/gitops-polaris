@@ -26,42 +26,33 @@ externalDatabase:
     sslmode: require # CNPG serves TLS by default
     target_session_attrs: read-write
 
-# Tasks/cache: bundled single-node Valkey
+# Tasks/cache: bundled Valkey, 3 nodes with Sentinel for automatic failover.
+# The netbox chart derives the sentinel endpoints itself when valkey.enabled.
 valkey:
   enabled: true
-  architecture: standalone
-  primary:
+  architecture: replication
+  sentinel:
+    enabled: true
+    primarySet: netbox-kv
+    quorum: 2
+  auth:
+    # NetBox can't pass SENTINEL_KWARGS, so sentinel auth must stay off
+    sentinel: false
+  replica:
+    replicaCount: 3
     persistence:
       storageClass: csi-cinder-sc-retain
       size: 1Gi
 
-# Media/uploads
+# Stateless: image attachments aren't used, so no media volume is needed.
+# This lets the web pods scale freely without an RWX storage class.
 persistence:
-  enabled: true
-  storageClass: csi-cinder-sc-retain
-  accessMode: ReadWriteOnce
-  size: 5Gi
+  enabled: false
 
-replicaCount: 1
-
-# The media PVC is ReadWriteOnce and mounted by both the web and worker pods,
-# so they must share a node and never overlap during rollouts.
-updateStrategy:
-  type: Recreate
+replicaCount: 2
 
 worker:
   enabled: true
-  updateStrategy:
-    type: Recreate
-  affinity:
-    podAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        - topologyKey: kubernetes.io/hostname
-          labelSelector:
-            matchLabels:
-              app.kubernetes.io/name: netbox
-              app.kubernetes.io/instance: netbox
-              app.kubernetes.io/component: netbox
 
 # Exposed via Envoy Gateway, same as the other apps
 httpRoute:
