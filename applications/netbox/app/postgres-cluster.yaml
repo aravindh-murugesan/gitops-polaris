@@ -1,0 +1,21 @@
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: netbox-postgres
+  namespace: netbox
+  labels:
+    app: netbox
+spec:
+  instances: 3
+
+  bootstrap:
+    initdb:
+      database: netbox
+      owner: netbox
+      secret:
+        name: netbox-postgres-credentials
+
+  storage:
+    storageClass: csi-cinder-sc-retain
+    size: 5Gi

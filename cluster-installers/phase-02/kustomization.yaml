@@ -5,3 +5,4 @@ resources:
   - ../../applications/cert-manager-duckdns/flux-installer
   - ../../applications/envoy-instance/flux-installer
   - ../../applications/ezbookkeeping/flux-installer
+  - ../../applications/netbox/flux-installer

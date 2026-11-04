@@ -1,0 +1,64 @@
+## NetBox Helm values (chart: netbox-community/netbox-chart)
+
+# Use the pre-created, SOPS-encrypted secrets
+existingSecret: netbox-config # secret_key, api_token_peppers, email_password
+superuser:
+  existingSecret: netbox-superuser # username, email, password, api_token
+
+allowedHosts:
+  - netbox.polarisw1.duckdns.org
+allowedHostsIncludesPodIP: true # needed for kubelet probes
+
+loginRequired: true
+
+# Database: CloudNativePG cluster (netbox-postgres), not the bundled Bitnami chart
+postgresql:
+  enabled: false
+
+externalDatabase:
+  host: netbox-postgres-rw.netbox.svc.cluster.local
+  port: 5432
+  database: netbox
+  username: netbox
+  existingSecretName: netbox-postgres-credentials
+  existingSecretKey: password
+  options:
+    sslmode: require # CNPG serves TLS by default
+    target_session_attrs: read-write
+
+# Tasks/cache: bundled single-node Valkey
+valkey:
+  enabled: true
+  architecture: standalone
+  primary:
+    persistence:
+      storageClass: csi-cinder-sc-retain
+      size: 1Gi
+
+# Media/uploads
+persistence:
+  enabled: true
+  storageClass: csi-cinder-sc-retain
+  accessMode: ReadWriteOnce
+  size: 5Gi
+
+replicaCount: 1
+
+worker:
+  enabled: true
+
+# Exposed via Envoy Gateway, same as the other apps
+httpRoute:
+  enabled: true
+  parentRefs:
+    - name: envoy-private
+      namespace: envoy-gateway-system
+  hostnames:
+    - netbox.polarisw1.duckdns.org
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 512Mi
+  limits:
+    memory: 2Gi
