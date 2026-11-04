@@ -44,8 +44,24 @@ persistence:
 
 replicaCount: 1
 
+# The media PVC is ReadWriteOnce and mounted by both the web and worker pods,
+# so they must share a node and never overlap during rollouts.
+updateStrategy:
+  type: Recreate
+
 worker:
   enabled: true
+  updateStrategy:
+    type: Recreate
+  affinity:
+    podAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - topologyKey: kubernetes.io/hostname
+          labelSelector:
+            matchLabels:
+              app.kubernetes.io/name: netbox
+              app.kubernetes.io/instance: netbox
+              app.kubernetes.io/component: netbox
 
 # Exposed via Envoy Gateway, same as the other apps
 httpRoute:
