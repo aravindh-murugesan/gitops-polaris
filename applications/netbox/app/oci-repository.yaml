@@ -1,0 +1,17 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: netbox-chart
+  namespace: flux-system
+  labels:
+    app: netbox
+    installer-type: helm
+spec:
+  interval: 1h
+  url: oci://ghcr.io/netbox-community/netbox-chart/netbox
+  layerSelector:
+    mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
+    operation: copy
+  ref:
+    tag: 8.3.99

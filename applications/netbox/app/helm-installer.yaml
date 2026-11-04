@@ -1,0 +1,24 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: netbox
+  namespace: flux-system
+  labels:
+    app: netbox
+    installer-type: helm
+spec:
+  interval: 10m
+  releaseName: netbox
+  targetNamespace: netbox
+  timeout: 15m
+  chartRef:
+    kind: OCIRepository
+    name: netbox-chart
+  valuesFrom:
+    - kind: ConfigMap
+      name: netbox-helm-values
+  upgrade:
+    strategy:
+      name: RetryOnFailure
+      retryInterval: 5m
